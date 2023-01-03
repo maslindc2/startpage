@@ -1,9 +1,12 @@
 <script>
-    export let data;
+    /**
+     * @type {{ weather: any; }}
+     */
+     export let data;
     import Bookmark1 from "./Bookmark1.svelte";
     import Bookmark2 from "./Bookmark2.svelte";
-    import Bookmark3 from "./Bookmark3.svelte";
     import Date from "./Date.svelte";
+    import Weather from "./Weather.svelte"
 </script>
 
 <svelte:head>
@@ -12,20 +15,17 @@
 
 <div class="center">
     <div class="parent">
-        <div class="div1">
+        <div class="bookmark1">
             <Bookmark1 />
         </div>
-        <div class="div2">
-            <Bookmark2 />           
+        <div class="bookmark2">
+            <Bookmark2 />
         </div>
-        <div class="div3">
-            <Bookmark3 />
-        </div>
-        <div class="div4">
+        <div class="widget1">
             <Date />
         </div>
-        <div class="div5">
-            <Date />
+        <div class="widget2">
+            <Weather weather={data.weather}/>
         </div>
     </div>
 </div>
@@ -43,8 +43,8 @@
     .parent {
         display: grid;
         /* removing grid here makes this basically mobile responsive lol */
-        grid-template-columns: repeat(4, 300px);
-        grid-template-rows: repeat(2, 200px);
+        grid-template-columns: repeat(3, 209px);
+        grid-template-rows: repeat(2, 177px);
         grid-column-gap: 50px;
         grid-row-gap: 50px;
         
@@ -62,26 +62,22 @@
     }
 
     .parent > div {
-        background-color: grey;
+        background-color: rgb(255, 255, 255);
         box-shadow: rgb(67, 67, 80) 0px 50px 100px -20px,
             rgba(194, 194, 194, 0.3) 0px 30px 60px -30px;
     }
     
-    .div1 {
+    .bookmark1 {
         grid-area: 1 / 1 / 3 / 1;
     }
-    .div2 {
+    .bookmark2 {
         grid-area: 1 / 2 / 3 / 2;
     }
-    .div3 {
-        grid-area: 1 / 3 / 3 / 3;
+    .widget1 {
+        grid-area: 1 / 3 / 2 / 4;
     }
-    
-    .div4 {
-        grid-area: 1 / 4 / 2 / 4;
-    }
-    .div5 {
-        grid-area: 2 / 4 / 3 / 4;
+    .widget2 {
+        grid-area: 2 / 3 / 3 / 4;
     }
     
 </style>
