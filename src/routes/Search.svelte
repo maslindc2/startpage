@@ -45,7 +45,6 @@
 <svelte:window on:keydown={handleKeyDown}/>
 <div class="searchBox">
     <input bind:value={query} type="text" placeholder={provider} name="" id= "">
-    <span class="underline"></span>
 </div>
 <style>
     input{
@@ -54,41 +53,16 @@
         font-weight: 400;
         text-align: center;
         background: none;
-        width: 100%;
+        width: auto;
         outline: 0;
-        color: rgb(7, 7, 7);
+        color: rgba(255, 255, 255, 0.863);
         border: 0px;
-        text-shadow: 0px 5px 10px rgba(0,0,0,0.125);
     }
-    
     input::placeholder {
         font-family: Inter, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: 400;
         text-align: center;
         background: none;
         color: rgba(255, 255, 255, 0.541);
-    }
-    input::-webkit-input-placeholder{
-        color:#AAA;
-    }
-    input::focus::-webkit-input-placeholder{
-        color: dodgerblue;
-    }
-    .input:focus+.underline {
-        transform: scale(1);
-    }
-    .underline {
-        background-color: dodgerblue;
-        display: inline-block;
-        height: 2px;
-        left: 50px;
-        margin-top: -4px;
-        position: absolute;
-        top: 185px;
-        -webkit-transform: scale(0, 1);
-        transform: scale(0, 1);
-        -webkit-transition: all 0.5s linear;
-        transition: all 0.5s linear;
-        width: 202px;
     }
 </style>
