@@ -6,7 +6,8 @@
     import Bookmark1 from "./Bookmark1.svelte";
     import Bookmark2 from "./Bookmark2.svelte";
     import Date from "./Date.svelte";
-    import Weather from "./Weather.svelte"
+    import Weather from "./Weather.svelte";
+    import Search from "./Search.svelte";
 </script>
 
 <svelte:head>
@@ -28,7 +29,11 @@
             <Weather weather={data.weather}/>
         </div>
     </div>
+    <div class="search">
+        <Search/>
+    </div>
 </div>
+
 
 <style>
     .center {
@@ -36,7 +41,7 @@
         justify-content: center;
         flex-flow: column wrap;
         align-items: center;
-        min-height: calc(100% - 50px);
+        min-height: 100%;
         border: 0px solid green;
     }
 
@@ -80,5 +85,8 @@
         grid-area: 2 / 3 / 3 / 4;
     }
     
+    .search{
+        padding-top: 30px;
+    }
 </style>
 
