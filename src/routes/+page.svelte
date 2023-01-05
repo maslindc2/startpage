@@ -1,8 +1,10 @@
 <script>
+    
     /**
-     * @type {{ weather: any; }}
+     * @type {{ bongoGif: any; weather: any; }}
      */
      export let data;
+    import BongoGif from "./BongoGif.svelte";
     import Bookmark1 from "./Bookmark1.svelte";
     import Bookmark2 from "./Bookmark2.svelte";
     import Date from "./Date.svelte";
@@ -16,6 +18,9 @@
 
 <div class="center">
     <div class="parent">
+        <div class="bongoGif">
+            <BongoGif bongoGif={data.bongoGif}/>
+        </div>
         <div class="bookmark1">
             <Bookmark1 />
         </div>
@@ -48,7 +53,7 @@
     .parent {
         display: grid;
         /* removing grid here makes this basically mobile responsive lol */
-        grid-template-columns: repeat(3, 209px);
+        grid-template-columns: repeat(4, 209px);
         grid-template-rows: repeat(2, 177px);
         grid-column-gap: 50px;
         grid-row-gap: 50px;
@@ -71,18 +76,20 @@
         box-shadow: rgb(67, 67, 80) 0px 50px 100px -20px,
             rgba(194, 194, 194, 0.3) 0px 30px 60px -30px;
     }
-    
-    .bookmark1 {
-        grid-area: 1 / 1 / 3 / 1;
+    .bongoGif{
+        grid-area: 2 / 1 / 2 / 1;
     }
-    .bookmark2 {
+    .bookmark1 {
         grid-area: 1 / 2 / 3 / 2;
     }
+    .bookmark2 {
+        grid-area: 1 / 3 / 3 / 3;
+    }
     .widget1 {
-        grid-area: 1 / 3 / 2 / 4;
+        grid-area: 1 / 4 / 2 / 4;
     }
     .widget2 {
-        grid-area: 2 / 3 / 3 / 4;
+        grid-area: 2 / 4 / 3 / 4;
     }
     
     .search{

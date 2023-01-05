@@ -22,6 +22,10 @@
                 provider = "Reddit";
                 query = "";
             }
+            if(query == "!yt"){
+                provider = "YouTube";
+                query = "";
+            }
             if(query !== ""){
                 switch (provider) {
                     case "Wikipedia":
@@ -32,6 +36,9 @@
                         break;
                     case "Reddit":
                         window.location.href = "https://www.reddit.com/search/?q=" + query;
+                        break;
+                    case "YouTube":
+                        window.location.href = "https://www.youtube.com/results?search_query=" + query;
                         break;
                     default:
                         window.location.href = "https://www.google.com/search?q=" + query;

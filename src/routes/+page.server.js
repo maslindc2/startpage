@@ -6,7 +6,13 @@ export async function load(){
         const data = await res.json();
         return data;
     }
+    const fetchBongo = async () =>{
+        const res = await fetch(`https://bongo-gif-express.vercel.app/`);
+        const data = await res.json();
+        return data;
+    }
     return {
-        weather: fetchWeather()
+        weather: fetchWeather(),
+        bongoGif: fetchBongo()
     }
 };
