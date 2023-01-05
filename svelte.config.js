@@ -1,12 +1,10 @@
-// svelte.config.js
-import adapter from 'svelte-adapter-deno';
+import adapter from '@sveltejs/adapter-auto';
 
-export default {
-  kit: {
-    adapter: adapter({
-      // default options are shown
-      out: 'build',
-      deps: 'node_modules/svelte-adapter-deno/deps.ts' // (relative to adapter-deno package)
-    })
-  }
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	kit: {
+		adapter: adapter()
+	}
 };
+
+export default config;
