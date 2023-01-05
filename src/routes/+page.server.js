@@ -1,4 +1,4 @@
-import { API_KEY, ZIP_CODE } from "$env/static/private";
+import { API_KEY, ZIP_CODE, BONGO_SERVE } from "$env/static/private";
 
 export async function load(){
     const fetchWeather = async () =>{
@@ -7,12 +7,12 @@ export async function load(){
         return data;
     }
     const fetchBongo = async () =>{
-        const res = await fetch(`https://bongo-gif-express.vercel.app/`);
+        const res = await fetch(`${BONGO_SERVE}`);
         const data = await res.json();
         return data;
     }
     return {
         weather: fetchWeather(),
-        bongoGif: fetchBongo()
+        bongoGif: fetchBongo(),
     }
 };
