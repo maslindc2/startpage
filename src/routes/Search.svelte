@@ -1,32 +1,29 @@
 <script>
     let query = "", provider = "Search", url ="";
-    /**
-     * @param {{code: string;}} event
-     * @type {any}
-     */
-     export let serverAddress;
     
+    
+    // @ts-ignore
+    export let serverAddress, searchProviders;
     /**
      * @param {{ code: string; }} event
      */
     function handleKeyDown(event){
         if(event.code == "Enter"){
-            if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
-                const requestProvider = async() =>{
-                    let res = await fetch(`${serverAddress}requestProvider`, {
+            if(query === "!update" || query === "!up"){
+                const requestUpdate = async() =>{
+                    await fetch(`${serverAddress}update`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({'providerCommand': query}),
-                    })
-                    .then(response => response.json())
-                    .then(json => {
-                        provider = json.Name;
-                        url = json.URL;
+                        body: JSON.stringify({'Command': 'update'}),
                     });
                 }
-                requestProvider();
+                requestUpdate();
+                query = "";
+            }else if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
+                provider = searchProviders[query].Name;
+                url = searchProviders[query].URL;
                 query = "";
             }else if(query !== ""){
                 window.location.href = url + query;

@@ -1,7 +1,8 @@
 <script>
     
+   
     /**
-     * @type {{ bongoGif: any; weather: any; server: any;}}
+     * @type {{ bongoGif: any; weather: any; server: any; searchProviders: any; }}
      */
      export let data;
     import BongoGif from "./BongoGif.svelte";
@@ -35,7 +36,7 @@
         </div>
     </div>
     <div class="search">
-        <Search serverAddress = {data.server}/>
+        <Search serverAddress = {data.server} searchProviders = {data.searchProviders}/>
     </div>
 </div>
 

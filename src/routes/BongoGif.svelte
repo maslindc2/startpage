@@ -1,12 +1,16 @@
 <script>
+    
     /**
      * @type {any}
+     * 
      */
-     export let bongoGif;
+    export let bongoGif;
+    
+    
 </script>
 <div class= "bongoContainer">
     <div class="gif">
-        <img src="{bongoGif.gif.randomUrl}" alt="" width="100%" height="100%">
+        <img src="{bongoGif}" alt="" width="100%" height="100%">
     </div>
 </div>
 <style>
