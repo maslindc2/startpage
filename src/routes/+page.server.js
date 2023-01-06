@@ -14,5 +14,6 @@ export async function load(){
     return {
         weather: fetchWeather(),
         bongoGif: fetchBongo(),
+        server: BONGO_SERVE,
     }
 };

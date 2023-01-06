@@ -1,49 +1,35 @@
 <script>
-    let query = "", provider = "Search";
-
+    let query = "", provider = "Search", url ="";
+    /**
+     * @param {{code: string;}} event
+     * @type {any}
+     */
+     export let serverAddress;
+    
     /**
      * @param {{ code: string; }} event
      */
     function handleKeyDown(event){
         if(event.code == "Enter"){
-            if(query == "!wk"){
-                provider = "Wikipedia";
-                query = "";
-            }
-            if(query == "!g"){
-                provider = "Search";
-                query = "";
-            }
-            if(query == "!am"){
-                provider = "Amazon";
-                query = "";
-            }
-            if(query == "!r"){
-                provider = "Reddit";
-                query = "";
-            }
-            if(query == "!yt"){
-                provider = "YouTube";
-                query = "";
-            }
-            if(query !== ""){
-                switch (provider) {
-                    case "Wikipedia":
-                        window.location.href = "https://en.wikipedia.org/wiki/" + query;
-                        break;
-                    case "Amazon":
-                        window.location.href = "https://www.amazon.com/s?k=" + query;
-                        break;
-                    case "Reddit":
-                        window.location.href = "https://www.reddit.com/search/?q=" + query;
-                        break;
-                    case "YouTube":
-                        window.location.href = "https://www.youtube.com/results?search_query=" + query;
-                        break;
-                    default:
-                        window.location.href = "https://www.google.com/search?q=" + query;
-                        break;
+            if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
+                const requestProvider = async() =>{
+                    let res = await fetch(`${serverAddress}/requestProvider`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({'providerCommand': query}),
+                    })
+                    .then(response => response.json())
+                    .then(json => {
+                        provider = json.Name;
+                        url = json.URL;
+                    });
                 }
+                requestProvider();
+                query = "";
+            }else if(query !== ""){
+                window.location.href = url + query;
             }
         }
     }
