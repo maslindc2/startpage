@@ -13,7 +13,7 @@
         if(event.code == "Enter"){
             if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
                 const requestProvider = async() =>{
-                    let res = await fetch(`${serverAddress}/requestProvider`, {
+                    let res = await fetch(`${serverAddress}requestProvider`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
