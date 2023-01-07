@@ -1,27 +1,15 @@
 <script>
-    let query = "", provider = "Search", url ="";
+    let query = "", provider = "Search", url = "https://www.google.com/search?q=";
     
     
     // @ts-ignore
-    export let serverAddress, searchProviders;
+    export let searchProviders;
     /**
      * @param {{ code: string; }} event
      */
     function handleKeyDown(event){
         if(event.code == "Enter"){
-            if(query === "!update" || query === "!up"){
-                const requestUpdate = async() =>{
-                    await fetch(`${serverAddress}update`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({'Command': 'update'}),
-                    });
-                }
-                requestUpdate();
-                query = "";
-            }else if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
+            if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
                 provider = searchProviders[query].Name;
                 url = searchProviders[query].URL;
                 query = "";

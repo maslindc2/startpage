@@ -11,7 +11,7 @@ body {
 	font: inherit;
 	vertical-align: baseline;
     height: 100%;
-	background-image: url("../src/public/bg.jpg");
+	background-image: url(https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Background/bg.jpg), url(https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Background/bg.png);
 }
 
 html {
