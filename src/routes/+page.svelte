@@ -74,7 +74,7 @@
     }
 
     .parent > div {
-        background-color: rgb(255, 255, 255);
+        background-color: #242424;
         box-shadow: rgb(67, 67, 80) 0px 50px 100px -20px,
             rgba(194, 194, 194, 0.3) 0px 30px 60px -30px;
     }

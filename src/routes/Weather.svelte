@@ -38,7 +38,7 @@
     }
 
     #feels {
-        color: rgba(10, 10, 10, 0.5);
+        color: rgba(255, 255, 255, 0.973);
         font-size: 0.9rem;
         margin: 0;
         font-weight: 500;
@@ -69,12 +69,13 @@
     }
 
     .weatherContainer .w1 {
+        color: rgba(255, 255, 255, 0.897);
         justify-content: space-around;
         width: 100%;
     }
 
     .weatherContainer .w2 {
-        color: rgba(0, 0, 0, 0.75);
+        color: rgba(255, 255, 255, 0.9);
         font-size: 1.5rem;
     }
 </style>

@@ -9,9 +9,7 @@
     
 </script>
 <div class= "bongoContainer">
-    <div class="gif">
-        <img src="{bongoGif}" alt="" width="100%" height="100%">
-    </div>
+    <img src="{bongoGif}" alt="" width="100%" height="100%">
 </div>
 <style>
     .bongoContainer {
@@ -21,9 +19,10 @@
         align-items: center;
         border-radius: 0.6rem;
         border-bottom: 2px solid rgba(10, 10, 10, 0.3);
-        font-size: 1.2em;
-        padding: 10px;
-        width: 161px;
-        height: 131px;
+        width: 181px;
+        height: 141px;
+    }
+    img{
+        border-radius: 0.4rem;
     }
 </style>

@@ -71,15 +71,15 @@
     }
 
     .date p:nth-child(1) {
-        color: rgba(0, 0, 0, 0.5);
+        color: rgba(255, 255, 255, 0.5);
         font-weight: 400;
     }
     .date p:nth-child(2) {
-        color: rgba(0, 0, 0, 0.75);
+        color: rgba(255, 255, 255, 0.75);
         font-weight: 400;
     }
     .date p:nth-child(3) {
-        color: rgba(0, 0, 0, 1);
+        color: rgba(255, 255, 255, 1);
         font-weight: 600;
     }
 </style>

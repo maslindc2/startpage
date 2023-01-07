@@ -43,12 +43,16 @@
         padding: 0;
     }
     .link {
+        background-color: rgba(10, 10, 10, 0.158);
+        border-radius: 0.6rem;
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
         height: 70px;
-        
     }    
+    .link:hover{
+        background-color: rgba(77, 77, 77, 0.158);
+    }
 </style>
