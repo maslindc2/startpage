@@ -5,7 +5,6 @@
          * @type {{ main: { temp: number; feels_like: number; }; weather: { description: any; }[]; }}
          */
          export let weather;
-         console.log(weather);
     </script>
     
     <div class="weatherContainer">
@@ -17,7 +16,7 @@
             </h3>
             <img
                 id="icon"
-                src='src/compass.svg'
+                src='https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Icons/compass.svg'
                 alt="..."
                 style="transform: rotate({weather.current.wind_degree}deg);"
             />
