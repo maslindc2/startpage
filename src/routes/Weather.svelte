@@ -10,19 +10,19 @@
 <div class="weatherContainer">
     <div class="w1">
         <h3 style="margin: 0; text-align: center;">
-            {Math.round(weather.main.temp)}°<br />
+            {Math.round(weather.current.temp_f)}°<br />
             <p id="feels">
-                feels like {Math.round(weather.main.feels_like)}°
+                feels like {Math.round(weather.current.feelslike_f)}°
             </p>
         </h3>
         <img
             id="icon"
-            src="https://openweathermap.org/img/wn/{weather.weather[0].icon.slice(0,-1) + ('n')}@2x.png"
+            src="http://{weather.current.condition.icon}"
             alt="..."
         />
     </div>
     <div style="margin: 0;" class="w2">
-        {weather.weather[0].description}
+        {weather.current.condition.text}
     </div>
 </div>
 <style>

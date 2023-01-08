@@ -19,7 +19,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        align-items: center;
         border-radius: 0.6rem;
         font-size: 1.2em;
         padding: 20px;

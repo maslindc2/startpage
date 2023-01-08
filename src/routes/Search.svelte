@@ -33,7 +33,7 @@
         background: none;
         width: auto;
         outline: 0;
-        color: rgba(255, 255, 255, 0.863);
+        color: rgb(44 44 44 / 84%);
         border: 0px;
     }
     input::placeholder {
@@ -41,6 +41,6 @@
         font-weight: 400;
         text-align: center;
         background: none;
-        color: rgba(255, 255, 255, 0.541);
+        color: rgba(54, 54, 54, 0.678);
     }
 </style>
