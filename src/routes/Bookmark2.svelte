@@ -8,7 +8,7 @@
     {#each bookmarks as {Icon, URL}, i}
         <div>
             <a class="link" href={URL}>
-                <img src={Icon} alt="" width="48px" height="48px">
+                <img src={Icon} alt="" width="48px" height="48px" style="filter: grayscale(1) invert(.2)">
             </a>
         </div>
     {/each}
