@@ -11,7 +11,7 @@ export async function load(){
         return bongoURL;
     }
     const fetchWeather = async () =>{
-        const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=4d402858afd64660a32193053230801&q=98007&aqi=no`);
+        const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}=${ZIP_CODE}&aqi=no`);
         const data = await res.json();
         return data;
     }
