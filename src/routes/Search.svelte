@@ -1,15 +1,26 @@
 <script>
+    import BongoGif from "./BongoGif.svelte";
+
+
     let query = "", provider = "Search", url = "https://www.google.com/search?q=";
-    
-    
-    // @ts-ignore
-    export let searchProviders;
+     
+    /**
+     * @type {{ [x: string]: { URL: string; Name: string;}; }}
+     */
+     export let searchProviders;
     /**
      * @param {{ code: string; }} event
      */
     function handleKeyDown(event){
         if(event.code == "Enter"){
-            if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
+            if(query === '!help' || query === '!h'){
+                var availableCMDs = [];
+                for(const key in searchProviders){
+                        availableCMDs.push(`${" " + key} : ${searchProviders[key].Name}`);
+                }
+                alert(" Below are the available commands for the search function \n" + availableCMDs);
+                query = "";
+            }else if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
                 provider = searchProviders[query].Name;
                 url = searchProviders[query].URL;
                 query = "";
