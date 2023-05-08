@@ -44,7 +44,7 @@
         background: none;
         width: auto;
         outline: 0;
-        color: rgba(44, 44, 44, 0.84);
+        color: rgba(255, 255, 255, 0.84);
         border: 0px;
     }
     input::placeholder {
