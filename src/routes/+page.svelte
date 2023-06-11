@@ -1,7 +1,4 @@
 <script>
-    
-   
-    
      /**
      * @type {{ bongoGif: any; bookmarks: any; weather: any; searchProviders: any; }}
      */
