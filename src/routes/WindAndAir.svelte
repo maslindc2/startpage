@@ -4,7 +4,8 @@
         /**
          * @type {{ main: { temp: number; feels_like: number; }; weather: { description: any; }[]; }}
          */
-         export let weather;
+        export let weather;
+        import Compass from "$lib/assets/compass.webp" 
     </script>
     
     <div class="weatherContainer">
@@ -16,7 +17,7 @@
             </h3>
             <img
                 id="icon"
-                src="src\assets\compass.webp"
+                src={Compass}
                 alt="..."
                 style="transform: rotate({weather.current.wind_degree}deg);"
             />
