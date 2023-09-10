@@ -5,13 +5,11 @@
 
 body {
 	margin: 0;
-	padding: 0 9px;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
     height: 100%;
-	background-image: url(https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Background/bg.jpg), url(https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Background/bg.png);
 }
 
 html {

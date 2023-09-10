@@ -127,11 +127,17 @@ export async function load(){
         }
     }
 
+    const fetchBackground = async() =>{
+        const res = await client.fetch(`*[_type == "background"]`)
+        return imageRefToSanityCompatibleURL(res[0].background.asset._ref)
+    }
+
     return {
         bongoGif: fetchBongo(),
         weather: fetchWeather(),
         bookmarkGroup1: fetchBookmarkGroup1(),
         bookmarkGroup2: fetchBookmarkGroup2(),
-        searchProviders: fetchSearchProviders()
+        searchProviders: fetchSearchProviders(),
+        background: fetchBackground()
     }
 };

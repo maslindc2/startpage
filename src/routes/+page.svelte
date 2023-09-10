@@ -13,35 +13,38 @@
     <title>StartPage</title>
 </svelte:head>
 
-<div class="center">
-    <div class="parent">
-        <div class="date">
-            <Date />
+
+    <div class="center" style="--image: url({data.background});">
+        <div class="parent">
+            <div class="date">
+                <Date />
+            </div>
+            <div class="bongoGif">
+                <BongoGif bongoGif={data.bongoGif}/>
+            </div>
+            <div class="bookmark1">
+                <Bookmark1 bookmarks={data.bookmarkGroup1}/>
+            </div>
+            <div class="bookmark2">
+                <Bookmark2 bookmarks={data.bookmarkGroup2}/>
+            </div>
+            <div class="weather">
+                <Weather weather={data.weather}/>
+            </div>
+            <div class="windAndAir">
+                <WindAndAir weather={data.weather}/>
+            </div>
+            
         </div>
-        <div class="bongoGif">
-            <BongoGif bongoGif={data.bongoGif}/>
+        <div class="search">
+            <Search searchProviders = {data.searchProviders}/>
         </div>
-        <div class="bookmark1">
-            <Bookmark1 bookmarks={data.bookmarkGroup1}/>
-        </div>
-        <div class="bookmark2">
-            <Bookmark2 bookmarks={data.bookmarkGroup2}/>
-        </div>
-        <div class="weather">
-            <Weather weather={data.weather}/>
-        </div>
-        <div class="windAndAir">
-            <WindAndAir weather={data.weather}/>
-        </div>
-        
     </div>
-    <div class="search">
-        <Search searchProviders = {data.searchProviders}/>
-    </div>
-</div>
+
 
 
 <style>
+
     .center {
         display: flex;
         justify-content: center;
@@ -49,6 +52,7 @@
         align-items: center;
         min-height: 100%;
         border: 0px solid green;
+        background-image: var(--image);
     }
 
     .parent {
@@ -96,7 +100,8 @@
         grid-area: 2 / 4 / 2 / 5;
     }
     .search{
-        padding-top: 30px;
+        padding-top: 15px;
     }
+    
 </style>
 
