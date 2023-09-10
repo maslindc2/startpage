@@ -1,13 +1,11 @@
 <script>
-    import BongoGif from "./BongoGif.svelte";
-
-
     let query = "", provider = "Search", url = "https://www.google.com/search?q=";
      
-    /**
-     * @type {{ [x: string]: { URL: string; Name: string;}; }}
+    
+     /**
+     * @type {any[]}
      */
-     export let searchProviders;
+      export let searchProviders;
     /**
      * @param {{ code: string; }} event
      */
@@ -16,17 +14,32 @@
             if(query === '!help' || query === '!h'){
                 var availableCMDs = [];
                 for(const key in searchProviders){
-                        availableCMDs.push(`${" " + key} : ${searchProviders[key].Name}`);
+                        availableCMDs.push(`${" " + searchProviders[key].Access} : ${searchProviders[key].Provider}`);
                 }
                 alert(" Below are the available commands for the search function \n" + availableCMDs);
                 query = "";
             }else if(query.startsWith("!") && (query.length == 2 || query.length == 3)){
-                provider = searchProviders[query].Name;
-                url = searchProviders[query].URL;
+                // @ts-ignore
+                var indexOfProvider = findProviderByAccess(query, searchProviders)
+                provider = searchProviders[indexOfProvider].Provider;
+                url = searchProviders[indexOfProvider].URL;
                 query = "";
             }else if(query !== ""){
                 window.location.href = url + query;
             }
+        }
+    }
+
+    /**
+     * @param {string} query
+     * @param {any[]} providersArray
+     */
+    function findProviderByAccess(query, providersArray){
+        const foundProvider = providersArray.find((/** @type {{ Access: string; }} */ provider) => provider.Access === query)
+        if (foundProvider) {
+            return providersArray.indexOf(foundProvider)
+        }else{
+            console.error("Search provider not found")
         }
     }
 </script>

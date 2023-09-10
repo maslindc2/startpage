@@ -66,7 +66,7 @@
     }
     .date p {
         margin: 0;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         text-align: center;
     }
 

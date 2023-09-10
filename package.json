@@ -17,5 +17,8 @@
 		"typescript": "^5.0.4",
 		"vite": "^4.3.1"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@sanity/client": "^6.4.11"
+	}
 }

@@ -1,8 +1,5 @@
 <script>
-     /**
-     * @type {{ bongoGif: any; bookmarks: any; weather: any; searchProviders: any; }}
-     */
-      export let data;
+    export let data;
     import BongoGif from "./BongoGif.svelte";
     import Bookmark1 from "./Bookmark1.svelte";
     import Bookmark2 from "./Bookmark2.svelte";
@@ -25,10 +22,10 @@
             <BongoGif bongoGif={data.bongoGif}/>
         </div>
         <div class="bookmark1">
-            <Bookmark1 bookmarks={data.bookmarks.Bookmark1}/>
+            <Bookmark1 bookmarks={data.bookmarkGroup1}/>
         </div>
         <div class="bookmark2">
-            <Bookmark2 bookmarks={data.bookmarks.Bookmark2}/>
+            <Bookmark2 bookmarks={data.bookmarkGroup2}/>
         </div>
         <div class="weather">
             <Weather weather={data.weather}/>
