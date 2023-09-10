@@ -19,6 +19,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sanity/client": "^6.4.11"
+		"@sanity/client": "^6.4.11",
+		"@vercel/analytics": "^1.0.2"
 	}
 }

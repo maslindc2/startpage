@@ -16,7 +16,7 @@
             </h3>
             <img
                 id="icon"
-                src='https://raw.githubusercontent.com/maslindc2/startpage-cms/main/Icons/compass.webp'
+                src="src\assets\compass.webp"
                 alt="..."
                 style="transform: rotate({weather.current.wind_degree}deg);"
             />
