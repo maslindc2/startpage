@@ -5,6 +5,7 @@
          * @type {{ main: { temp: number; feels_like: number; }; weather: { description: any; }[]; }}
          */
         export let weather;
+        export let aqi;
         import Compass from "$lib/assets/compass.webp" 
     </script>
     
@@ -23,7 +24,7 @@
             />
         </div>
         <div class="w2">
-            Gusts up to {weather.current.gust_mph} mph
+            Air Quality is {aqi}
         </div>
     </div>
     <style>

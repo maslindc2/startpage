@@ -1,4 +1,4 @@
-import { API_KEY, ZIP_CODE, BONGO_SERVE, PROJECT_ID, DATA_SET } from "$env/static/private";
+import { API_KEY, ZIP_CODE, PURPLE_AIR, SENSOR, PROJECT_ID, DATA_SET } from "$env/static/private";
 import {createClient} from "@sanity/client"
 
 const client = createClient({
@@ -39,6 +39,11 @@ export async function load(){
            return BASE_URL + fileURL
     }
 
+    
+    const fetchBackground = async() =>{
+        const res = await client.fetch(`*[_type == "background"]`)
+        return imageRefToSanityCompatibleURL(res[0].background.asset._ref)
+    }
 
     const fetchBongo = async () =>{
         // Fetches gifs from Sanity CMS
@@ -53,11 +58,7 @@ export async function load(){
 
         return imageRefToSanityCompatibleURL(randomGifAssetRef);
     }
-    const fetchWeather = async () =>{
-        const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}=${ZIP_CODE}&aqi=no`);
-        const data = await res.json();
-        return data;
-    }
+    
     const fetchBookmarkGroup1 = async() =>{
         try {
             // Fetch the bookmark1 dataset from Sanity
@@ -119,7 +120,6 @@ export async function load(){
                 }; 
             })
             // return the bookmarkGroup array
-            
             return searchProviders
         } catch(error){
             console.error("Error fetching search providers from Sanity:", error);
@@ -127,17 +127,95 @@ export async function load(){
         }
     }
 
-    const fetchBackground = async() =>{
-        const res = await client.fetch(`*[_type == "background"]`)
-        return imageRefToSanityCompatibleURL(res[0].background.asset._ref)
+    const fetchWeather = async () =>{
+        const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}=${ZIP_CODE}&aqi=no`);
+        const data = await res.json();
+        return data;
+    }
+
+
+    const AQI_RANGES = [
+        { range: [0, 50], label: "Good" },
+        { range: [51, 100], label: "Moderate" },
+        { range: [101, 150], label: "Unhealthy for Sensitive Groups" },
+        { range: [151, 200], label: "Unhealthy" },
+        { range: [201, 300], label: "Very Unhealthy" },
+        { range: [301, 600], label: "Hazardous" },
+    ];
+
+    const fetchAirQuality = async () => {
+        try {
+          const sensorURL = `https://api.purpleair.com/v1/sensors/${SENSOR}?fields=pm2.5`;
+          const response = await fetch(sensorURL, {
+            headers: {
+              'X-API-KEY': PURPLE_AIR,
+            },
+          });
+      
+          if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status}`);
+          }
+      
+          const data = await response.json();
+          const pm25 = data.sensor["pm2.5"];
+          const aqi = calculateAQI(pm25);
+          // @ts-ignore
+          const aqiLabel = interpretAQI(aqi);
+          return aqiLabel;
+        } catch (error) {
+          console.error("Error fetching air quality:", error);
+        }
+    };
+
+    /**
+     * @param {number} pm25
+     */
+    function calculateAQI(pm25) {
+        // Define the AQI breakpoints for PM2.5
+        const breakpoints = [
+          { bpLow: 0.0, bpHigh: 12.0, iLow: 0, iHigh: 50 },
+          { bpLow: 12.1, bpHigh: 35.4, iLow: 51, iHigh: 100 },
+          { bpLow: 35.5, bpHigh: 55.4, iLow: 101, iHigh: 150 },
+          { bpLow: 55.5, bpHigh: 150.4, iLow: 151, iHigh: 200 },
+          { bpLow: 150.5, bpHigh: 250.4, iLow: 201, iHigh: 300 },
+          { bpLow: 250.5, bpHigh: 350.4, iLow: 301, iHigh: 400 },
+          { bpLow: 350.5, bpHigh: 500.4, iLow: 401, iHigh: 500 },
+        ];
+      
+        // Find the appropriate range of breakpoints
+        const breakpoint = breakpoints.find((range) => pm25 >= range.bpLow && pm25 <= range.bpHigh);
+      
+        if (!breakpoint) {
+          return "AQI data not available for this PM2.5 concentration";
+        }
+      
+        // Calculate AQI based on the selected range
+        const aqi = ((breakpoint.iHigh - breakpoint.iLow) / (breakpoint.bpHigh - breakpoint.bpLow)) * (pm25 - breakpoint.bpLow) + breakpoint.iLow;
+      
+        return Math.round(aqi);
+      }
+
+    /**
+     * @param {number} aqi
+     */
+    function interpretAQI(aqi) {
+        for (const range of AQI_RANGES) {
+            if (aqi >= range.range[0] && aqi <= range.range[1]) {
+                return range.label;
+            }
+        }
+        return "Error calculating AQI";
     }
 
     return {
         bongoGif: fetchBongo(),
         weather: fetchWeather(),
+        airQuality: fetchAirQuality(),
         bookmarkGroup1: fetchBookmarkGroup1(),
         bookmarkGroup2: fetchBookmarkGroup2(),
         searchProviders: fetchSearchProviders(),
         background: fetchBackground()
     }
 };
+
+

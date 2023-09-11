@@ -30,9 +30,8 @@
             <Weather weather={data.weather}/>
         </div>
         <div class="windAndAir">
-            <WindAndAir weather={data.weather}/>
+            <WindAndAir weather={data.weather} aqi={data.airQuality}/>
         </div>
-            
     </div>
     <div class="search">
         <Search searchProviders = {data.searchProviders}/>
