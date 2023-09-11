@@ -24,7 +24,7 @@
             />
         </div>
         <div class="w2">
-            Air Quality is {aqi}
+            Air Quality: {aqi}
         </div>
     </div>
     <style>
@@ -59,7 +59,7 @@
             display: flex;
             justify-content: space-around;
             flex-flow: column;
-            padding: 10px;
+            padding: 6px;
             width: 100%;
             height: 90%;
         }

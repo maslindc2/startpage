@@ -137,8 +137,7 @@ export async function load(){
     const AQI_RANGES = [
         { range: [0, 50], label: "Good" },
         { range: [51, 100], label: "Moderate" },
-        { range: [101, 150], label: "Unhealthy for Sensitive Groups" },
-        { range: [151, 200], label: "Unhealthy" },
+        { range: [101, 200], label: "Unhealthy" },
         { range: [201, 300], label: "Very Unhealthy" },
         { range: [301, 600], label: "Hazardous" },
     ];
@@ -161,7 +160,7 @@ export async function load(){
           const aqi = calculateAQI(pm25);
           // @ts-ignore
           const aqiLabel = interpretAQI(aqi);
-          return aqiLabel;
+          return aqiLabel + ` (${aqi})`;
         } catch (error) {
           console.error("Error fetching air quality:", error);
         }
