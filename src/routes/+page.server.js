@@ -144,7 +144,7 @@ export async function load(){
 
     const fetchAirQuality = async () => {
         try {
-          const sensorURL = `https://api.purpleair.com/v1/sensors/${SENSOR}?fields=pm2.5`;
+          const sensorURL = `https://api.purpleair.com/v1/sensors/${SENSOR}?fields=pm2.5_10minute_a`;
           const response = await fetch(sensorURL, {
             headers: {
               'X-API-KEY': PURPLE_AIR,
@@ -156,7 +156,7 @@ export async function load(){
           }
       
           const data = await response.json();
-          const pm25 = data.sensor["pm2.5"];
+          const pm25 = data.sensor.stats_a['pm2.5_10minute'];
           const aqi = calculateAQI(pm25);
           // @ts-ignore
           const aqiLabel = interpretAQI(aqi);
