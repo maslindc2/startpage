@@ -24,7 +24,9 @@
             />
         </div>
         <div class="w2">
-            Air Quality: {aqi}
+            <a id = "sensorLink"href='https://map.purpleair.com/1/mAQI/a10/p604800/cC0?select={aqi.Sensor}'>
+                Air Quality: {aqi.AirQuality}
+            </a>
         </div>
     </div>
     <style>
@@ -38,7 +40,10 @@
             font-size: 1.2em;
             padding: 20px;
         }
-    
+        #sensorLink {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+        }
         #feels {
             color: rgba(255, 255, 255, 0.973);
             font-size: 0.9rem;

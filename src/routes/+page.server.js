@@ -159,8 +159,11 @@ export async function load(){
           const pm25 = data.sensor.stats_a['pm2.5_10minute'];
           const aqi = calculateAQI(pm25);
           // @ts-ignore
-          const aqiLabel = interpretAQI(aqi);
-          return aqiLabel + ` (${aqi})`;
+          const aqiLabel = interpretAQI(aqi) + ` (${aqi})`;
+          return {
+            "AirQuality": aqiLabel,
+            "Sensor": SENSOR
+          }
         } catch (error) {
           console.error("Error fetching air quality:", error);
         }
