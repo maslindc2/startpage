@@ -1,4 +1,4 @@
-import { API_KEY, ZIP_CODE, PURPLE_AIR, SENSOR, PROJECT_ID, DATA_SET } from "$env/static/private";
+import { API_KEY, ZIP_CODE, PURPLE_AIR, SENSOR, PROJECT_ID, DATA_SET, BACKUP_API_KEY } from "$env/static/private";
 import {createClient} from "@sanity/client"
 
 const client = createClient({
@@ -130,14 +130,32 @@ export async function load(){
     const fetchWeather = async () =>{
         const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}=${ZIP_CODE}&aqi=no`);
         const data = await res.json();
+        // Here we check to see if weather api failed to get the current conditions
+        // If so we go to the backup weather api
         if (!data || !data.current || Object.keys(data.current).length === 0){
+            // Here we contact the OpenWeatherApi to convert our zip code to our latitude and longitude
+            const openWeatherLocation = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${ZIP_CODE},US&appid=${BACKUP_API_KEY}`);
+            
+            // Here we take the response and convert it to json format
+            const openWeatherLatLon = await openWeatherLocation.json();
+            
+            // Now that we have our latitude and longitude we make the call to openweather api for the current conditions using imperial units
+            const openWeatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${openWeatherLatLon.lat}&lon=${openWeatherLatLon.lon}&appid=${BACKUP_API_KEY}&units=imperial`)
+            
+            // Convert that response to json format. 
+            const openWeatherJSON = await openWeatherRes.json();
+
+            // Here we use the same format so it does not impact any of the widgets.
             return {
                 "current":{
                     "condition":{
-                        "icon":"",
-                        "feelslike_f": 0,
-                        "text": "Weather API Error"
-                    }
+                        "icon": `openweathermap.org/img/wn/${openWeatherJSON.weather[0].icon}.png`,
+                        "text": openWeatherJSON.weather[0].main
+                    },
+                    "temp_f": openWeatherJSON.main.temp,
+                    "feelslike_f": openWeatherJSON.main.feels_like,
+                    "wind_degree": openWeatherJSON.wind.deg,
+                    "wind_mph": openWeatherJSON.wind.speed
                 }
             }
         }else{
