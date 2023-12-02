@@ -130,7 +130,19 @@ export async function load(){
     const fetchWeather = async () =>{
         const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}=${ZIP_CODE}&aqi=no`);
         const data = await res.json();
-        return data;
+        if (!data || !data.current || Object.keys(data.current).length === 0){
+            return {
+                "current":{
+                    "condition":{
+                        "icon":"",
+                        "feelslike_f": 0,
+                        "text": "Weather API Error"
+                    }
+                }
+            }
+        }else{
+            return data;
+        }
     }
 
 
